@@ -33,6 +33,7 @@ jobs:
           cd AuthenticatorPro.Droid
           echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > release.keystore
           dotnet publish -f:$FRAMEWORK -c:$CONFIGURATION --no-restore -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=release.keystore -p:AndroidSigningKeyAlias=${{ secrets.KEY_ALIAS }} -p:AndroidSigningKeyPass=${{ secrets.KEY_PASS }} -p:AndroidSigningStorePass=${{ secrets.STORE_PASS }} -p:AndroidPackageFormats=apk
+          ls
           cd ..
           APK=$(find AuthenticatorPro.Droid/bin/$CONFIGURATION/$FRAMEWORK/publish -name '*.apk')
           mv $APK "me.jmh.authenticatorpro.apk"
